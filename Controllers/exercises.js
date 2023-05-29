@@ -32,6 +32,7 @@ const createExercise = async (req, res) => {
  }
 
 const exerciseLogger = async (req, res) => { 
+    const {from, to, limit} = req.query
     // get userID
     const userID = req.params._id
     // get user
@@ -41,8 +42,25 @@ const exerciseLogger = async (req, res) => {
         if(!user){
             res.send('User does Not Exist')
         } else {
+            // create date filtering
+            const dateObj = {}
+            if(from){
+                dateObj["$gte"] = new Date(from)
+            }
+            if(to){
+                dateObj["$lte"] = new Date(to)
+            }
+
+            let filter = {
+                user_id: userID
+            }
+
+            if (from || to){
+                filter.date = dateObj
+            }
+
             // get exercises
-            const exercises = await Exercise.find({user_id: userID})
+            const exercises = await Exercise.find(filter).limit(+limit ?? 500)
 
             const logArray = exercises.map(e => ({
                 description: e.description,
