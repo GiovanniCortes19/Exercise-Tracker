@@ -31,6 +31,40 @@ const createExercise = async (req, res) => {
     }
  }
 
+const exerciseLogger = async (req, res) => { 
+    // get userID
+    const userID = req.params._id
+    // get user
+    const user = await User.findById(userID)
+
+    try {
+        if(!user){
+            res.send('User does Not Exist')
+        } else {
+            // get exercises
+            const exercises = await Exercise.find({user_id: userID})
+
+            const logArray = exercises.map(e => ({
+                description: e.description,
+                duration: e.duration,
+                date: e.date.toDateString()
+            }))
+
+            const log = {
+                username: user.username,
+                count: exercises.length,
+                _id: userID,
+                log: logArray
+            }
+
+            res.json(log)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+ }
+
 module.exports = {
-    createExercise
+    createExercise,
+    exerciseLogger
 }
