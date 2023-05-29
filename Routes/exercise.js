@@ -5,6 +5,6 @@ const router = express.Router()
 const { createExercise } = require('../Controllers/exercises')
 
 // Routes
-router.route('/exercises').post(createExercise)
+router.route('/:_id/exercises').post(createExercise)
 
 module.exports = router

@@ -25,7 +25,7 @@ const exerciseRouter = require('./Routes/exercise')
 
 // ROUTES
 app.use('/api/users',usersRouter)
-app.use('/api/users/:id', exerciseRouter)
+app.use('/api/users', exerciseRouter)
 
 
 const port = process.env.PORT || 3000

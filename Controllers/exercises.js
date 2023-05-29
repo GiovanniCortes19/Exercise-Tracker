@@ -2,9 +2,9 @@ const Exercise = require('../Models/Exercise')
 const User = require('../Models/User')
 
 const createExercise = async (req, res) => { 
-    // find the user
     const id = req.params._id
     const { description, duration, date } = req.body
+
     try {
         const user = await User.findById(id)
         if (!user) {
