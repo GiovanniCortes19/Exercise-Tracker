@@ -21,9 +21,11 @@ app.get('/', (req, res) => {
 
 // ROUTERS
 const usersRouter = require('./Routes/user')
+const exerciseRouter = require('./Routes/exercise')
 
 // ROUTES
 app.use('/api/users',usersRouter)
+app.use('/api/users/:id', exerciseRouter)
 
 
 const port = process.env.PORT || 3000

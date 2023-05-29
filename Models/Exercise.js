@@ -10,7 +10,7 @@ const ExerciseSchema = new mongoose.Schema({
     date: {
         type: Date
     },
-    _id: {
+    user_id: {
         type: String,
         required: [true, "Please insert the user ID"]
     }

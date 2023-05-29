@@ -2,15 +2,15 @@
 
 ## Instructions for building your project:
 
-You can POST to /api/users with form data username to create a new user.
+<!-- You can POST to /api/users with form data username to create a new user. -->
 
-The returned response from POST /api/users with form data username will be an object with username and _id properties.
+<!-- The returned response from POST /api/users with form data username will be an object with username and _id properties. -->
 
-You can make a GET request to /api/users to get a list of all users.
+<!-- You can make a GET request to /api/users to get a list of all users. -->
 
-The GET request to /api/users returns an array.
+<!-- The GET request to /api/users returns an array. -->
 
-Each element in the array returned from GET /api/users is an object literal containing a user's username and _id.
+<!-- Each element in the array returned from GET /api/users is an object literal containing a user's username and _id. -->
 
 You can POST to /api/users/:_id/exercises with form data description, duration, and optionally date. If no date is supplied, the current date will be used.
 
