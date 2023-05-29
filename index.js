@@ -19,10 +19,11 @@ app.get('/', (req, res) => {
 });
 
 
+// ROUTERS
+const usersRouter = require('./Routes/user')
 
 // ROUTES
-
-
+app.use('/api/users',usersRouter)
 
 
 const port = process.env.PORT || 3000
