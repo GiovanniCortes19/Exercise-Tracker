@@ -6,13 +6,11 @@ require('dotenv').config()
 const mongodb = require('mongodb')
 const mongoose = require('mongoose')
 
-// CONNECTING DATABASE
-mongoose.connect(process.env.DB_URL)
 
 // MIDDLEWARE
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({extended:true}))
 
 // HOME WEBPAGE
 app.use(express.static('public'))
@@ -20,10 +18,25 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+
+
 // ROUTES
 
 
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
-})
+
+const port = process.env.PORT || 3000
+
+// START & CONNECT APP TO DATABASE
+const start = async () => {
+  try {
+    await mongoose.connect(process.env.DB_URL)
+    app.listen(port, () => {
+      console.log(`Your app is listening on port ${port}...`)
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+start()
