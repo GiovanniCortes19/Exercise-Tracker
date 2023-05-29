@@ -7,7 +7,7 @@ const mongodb = require('mongodb')
 const mongoose = require('mongoose')
 
 // CONNECTING DATABASE
-
+mongoose.connect(process.env.DB_URL)
 
 // MIDDLEWARE
 app.use(cors())
