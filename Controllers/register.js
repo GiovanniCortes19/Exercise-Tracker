@@ -12,7 +12,11 @@ const createUser = async (req, res) => {
 const getAllUsers = async (req, res) => { 
     try {
         const users = await User.find({}).select('username _id')
-        res.status(200).send(users)
+        if(users.length === 0){
+            res.send('No users found')
+        } else {
+            res.status(200).send(users)
+        }
     } catch (error) {
         console.log(error);
         res.send('Something went wrong')
